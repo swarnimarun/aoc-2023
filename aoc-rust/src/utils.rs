@@ -9,7 +9,14 @@ macro_rules! get_file_name {
     }};
 }
 
+#[macro_export]
+macro_rules! aoc_input {
+    () => {{
+        crate::utils::read_input(get_file_name!())
+    }};
+}
+
 pub fn read_input(p: impl AsRef<Path>) -> String {
-    let path = PathBuf::from("./.aocdata").join(p.as_ref());
+    let path = PathBuf::from("../.aocdata").join(p.as_ref());
     std::fs::read_to_string(&path).expect(&format!("Failed to read: {}", path.display()))
 }
